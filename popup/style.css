@@ -1,0 +1,37 @@
+.body {
+  width: 9.0rem;
+  padding: 0;
+  margin: 2px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1px;
+}
+.item {
+  display: block;
+  width: 100%;
+}
+.item + .item {
+  border-top: 3px solid #ffffff;
+}
+.heading {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.search-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  color: #000000;
+  background-color: #bbc6ce;
+  font-size: 1.4rem;
+}
+.search-button:hover {
+  background-color: #48aae6;
+}
