@@ -1,7 +1,7 @@
 tcott
 =====
 
-Read the context of the specified tweet.
+Investigate the context of the tweet.
 
 License
 -------

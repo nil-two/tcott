@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name":        "the-context-of-the-tweet",
   "version":     "0.1",
-  "description": "Read the context of the specified tweet",
+  "description": "Investigate the context of the tweet",
   "icons": {
     "48": "icons/icon48.png"
   },
@@ -19,7 +19,7 @@
 
   "page_action": {
     "browser_style": true,
-    "default_title": "Read the context of the tweet",
+    "default_title": "Investigate the context of the tweet",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "48": "icons/icon48.png"

@@ -1,6 +1,6 @@
 var URL_PATTERN = /^(?:http|https):\/\/twitter.com\/[^\/]+\/status\//;
 var ICON_PATH   = "icons/icon48.png";
-var ICON_TITLE  = "Search the context of the tweet";
+var ICON_TITLE  = "Investigate the context of the tweet";
 
 function initializePageAction(tab) {
   if (tab.url.match(URL_PATTERN)) {
