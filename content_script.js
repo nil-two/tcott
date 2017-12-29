@@ -24,12 +24,13 @@
   }
 
   function toTwitterDatetime(d) {
-    var year    = d.getFullYear();
-    var month   = d.getMonth()+1;
-    var date    = d.getDate();
-    var hours   = d.getHours();
-    var minutes = d.getMinutes();
-    var seconds = d.getSeconds();
+    var year     = d.getUTCFullYear();
+    var month    = d.getUTCMonth()+1;
+    var date     = d.getUTCDate();
+    var hours    = d.getUTCHours();
+    var minutes  = d.getUTCMinutes();
+    var seconds  = d.getUTCSeconds();
+    var timezone = "UTC";
 
     if (month   < 10) month   = "0"+month;
     if (date    < 10) date    = "0"+date;
@@ -37,7 +38,7 @@
     if (minutes < 10) minutes = "0"+minutes;
     if (seconds < 10) seconds = "0"+seconds;
 
-    return year+"-"+month+"-"+date+"_"+hours+":"+minutes+":"+seconds+"_JST";
+    return year+"-"+month+"-"+date+"_"+hours+":"+minutes+":"+seconds+"_"+timezone;
   }
 
   browser.runtime.onMessage.addListener(function(message) {
