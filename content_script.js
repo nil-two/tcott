@@ -1,18 +1,23 @@
 (function() {
   function search(timeDiff) {
-    var elTweet          = document.querySelector(".permalink-tweet");
-    var elTweetTimestamp = document.querySelector(".permalink-tweet ._timestamp");
+    var elLinkToTweetOwner = document.querySelector("article.css-1dbjc4n.r-1loqt21.r-1udh08x:not(.r-o7ynqc):not(.r-1j63xyz) a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-sdzlij.r-1loqt21.r-1adg3ll.r-ahm1il.r-1udh08x.r-o7ynqc.r-6416eg.r-13qz1uu");
+    var elTweetTimestamp   = document.querySelector(".permalink-tweet ._timestamp");
 
-    var userId    = elTweet.dataset.screenName;
-    var timestamp = parseInt(elTweetTimestamp.dataset.timeMs);
+    var userId    = elLinkToTweetOwner.getAttribute("href").substr(1);
+    var tweetId   = location.href.replace(new RegExp("^.*/"), "");
+    var tweetTime = toTweetTime(tweetId);
 
-    var tweetDate = new Date(parseInt(timestamp));
+    var tweetDate = new Date(tweetTime);
     var sinceDate = new Date(tweetDate.getTime() - timeDiff);
     var untilDate = new Date(tweetDate.getTime() + timeDiff);
 
     var query = toSearchQuery(userId, sinceDate, untilDate);
     var url   = toSearchUrl(query);
     location.href = url;
+  }
+
+  function toTweetTime(tweetId) {
+    return Number((BigInt(tweetId) >> 22n) + 1288834974657n);
   }
 
   function toSearchQuery(userId, sinceDate, untilDate) {
