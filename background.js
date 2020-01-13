@@ -2,6 +2,10 @@ var URL_PATTERN = /^(?:http|https):\/\/twitter.com\/[^\/]+\/status\//;
 var ICON_PATH   = "icons/icon48.png";
 var ICON_TITLE  = "Investigate the context of the tweet";
 
+if (chrome) {
+  browser = chrome;
+}
+
 function initializePageAction(tab) {
   if (tab.url.match(URL_PATTERN)) {
     browser.pageAction.setIcon({tabId: tab.id, path: ICON_PATH});
@@ -10,8 +14,7 @@ function initializePageAction(tab) {
   }
 }
 
-var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
-gettingActiveTab.then(function(tabs) {
+browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
   tabs.forEach(function(tab) {
     initializePageAction(tab);
   })

@@ -1,14 +1,16 @@
 (function() {
+  if (chrome) {
+    browser = chrome;
+  }
+
   function search(tab, timeDiff) {
-    var gettingScript = browser.tabs.executeScript(tab.id, {file: "/content_script.js"});
-    gettingScript.then(function() {
+    browser.tabs.executeScript(tab.id, {file: "/content_script.js"}, function() {
       browser.tabs.sendMessage(tab.id, {timeDiff: timeDiff});
     });
   }
 
   function searchOnActiveTab(timeDiff) {
-    var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
-    gettingActiveTab.then(function(tabs) {
+    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
       var tab = tabs[0];
       search(tab, timeDiff);
     });

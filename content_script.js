@@ -1,4 +1,8 @@
 (function() {
+  if (chrome) {
+    browser = chrome;
+  }
+
   function search(timeDiff) {
     var elLinkToTweetOwner = document.querySelector("article.css-1dbjc4n.r-1loqt21.r-1udh08x:not(.r-o7ynqc):not(.r-1j63xyz) a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-sdzlij.r-1loqt21.r-1adg3ll.r-ahm1il.r-1udh08x.r-o7ynqc.r-6416eg.r-13qz1uu");
     var elTweetTimestamp   = document.querySelector(".permalink-tweet ._timestamp");
