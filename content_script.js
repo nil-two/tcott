@@ -1,58 +1,58 @@
 (function() {
-  if (chrome) {
-    browser = chrome;
-  }
-
-  function search(timeDiff) {
-    var urlMatches = location.href.match(/([^\/]+)\/status\/([^\/]+)$/);
-    if (urlMatches === null) {
-      return;
+    if (chrome) {
+        browser = chrome;
     }
 
-    var userId    = urlMatches[1];
-    var tweetId   = urlMatches[2];
-    var tweetTime = toTweetTime(tweetId);
+    function search(timeDiff) {
+        var urlMatches = location.href.match(/([^\/]+)\/status\/([^\/]+)$/);
+        if (urlMatches === null) {
+            return;
+        }
 
-    var tweetDate = new Date(tweetTime);
-    var sinceDate = new Date(tweetDate.getTime() - timeDiff);
-    var untilDate = new Date(tweetDate.getTime() + timeDiff);
+        var userId    = urlMatches[1];
+        var tweetId   = urlMatches[2];
+        var tweetTime = toTweetTime(tweetId);
 
-    var query = toSearchQuery(userId, sinceDate, untilDate);
-    var url   = toSearchUrl(query);
-    location.href = url;
-  }
+        var tweetDate = new Date(tweetTime);
+        var sinceDate = new Date(tweetDate.getTime() - timeDiff);
+        var untilDate = new Date(tweetDate.getTime() + timeDiff);
 
-  function toTweetTime(tweetId) {
-    return Number((BigInt(tweetId) >> 22n) + 1288834974657n);
-  }
+        var query = toSearchQuery(userId, sinceDate, untilDate);
+        var url   = toSearchUrl(query);
+        location.href = url;
+    }
 
-  function toSearchQuery(userId, sinceDate, untilDate) {
-    return "from:"+userId+" include:nativeretweets since:"+toTwitterDatetime(sinceDate)+" until:"+toTwitterDatetime(untilDate);
-  }
+    function toTweetTime(tweetId) {
+        return Number((BigInt(tweetId) >> 22n) + 1288834974657n);
+    }
 
-  function toSearchUrl(query) {
-    return "https://twitter.com/search?f=live&q="+encodeURIComponent(query);
-  }
+    function toSearchQuery(userId, sinceDate, untilDate) {
+        return "from:"+userId+" include:nativeretweets since:"+toTwitterDatetime(sinceDate)+" until:"+toTwitterDatetime(untilDate);
+    }
 
-  function toTwitterDatetime(d) {
-    var year     = d.getUTCFullYear();
-    var month    = d.getUTCMonth()+1;
-    var date     = d.getUTCDate();
-    var hours    = d.getUTCHours();
-    var minutes  = d.getUTCMinutes();
-    var seconds  = d.getUTCSeconds();
-    var timezone = "UTC";
+    function toSearchUrl(query) {
+        return "https://twitter.com/search?f=live&q="+encodeURIComponent(query);
+    }
 
-    if (month   < 10) month   = "0"+month;
-    if (date    < 10) date    = "0"+date;
-    if (hours   < 10) hours   = "0"+hours;
-    if (minutes < 10) minutes = "0"+minutes;
-    if (seconds < 10) seconds = "0"+seconds;
+    function toTwitterDatetime(d) {
+        var year     = d.getUTCFullYear();
+        var month    = d.getUTCMonth()+1;
+        var date     = d.getUTCDate();
+        var hours    = d.getUTCHours();
+        var minutes  = d.getUTCMinutes();
+        var seconds  = d.getUTCSeconds();
+        var timezone = "UTC";
 
-    return year+"-"+month+"-"+date+"_"+hours+":"+minutes+":"+seconds+"_"+timezone;
-  }
+        if (month   < 10) month   = "0"+month;
+        if (date    < 10) date    = "0"+date;
+        if (hours   < 10) hours   = "0"+hours;
+        if (minutes < 10) minutes = "0"+minutes;
+        if (seconds < 10) seconds = "0"+seconds;
 
-  browser.runtime.onMessage.addListener(function(message) {
-    search(message.timeDiff);
-  });
+        return year+"-"+month+"-"+date+"_"+hours+":"+minutes+":"+seconds+"_"+timezone;
+    }
+
+    browser.runtime.onMessage.addListener(function(message) {
+        search(message.timeDiff);
+    });
 })();
