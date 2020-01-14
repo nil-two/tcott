@@ -4,7 +4,8 @@
   "version":     "0.2",
   "description": "Investigate the context of the tweet",
   "icons": {
-    "48": "icons/icon48.png"
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
 
   "permissions": [
@@ -22,7 +23,8 @@
     "default_title": "Investigate the context of the tweet",
     "default_popup": "popup/popup.html",
     "default_icon": {
-      "48": "icons/icon48.png"
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
   }
 }
