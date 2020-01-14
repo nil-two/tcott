@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name":        "the-context-of-the-tweet",
   "short_name":  "tcott",
-  "version":     "0.2",
+  "version":     "0.3",
   "description": "Investigate the context of the tweet",
   "icons": {
     "48": "icons/icon48.png",
