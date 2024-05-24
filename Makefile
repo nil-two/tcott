@@ -1,6 +1,6 @@
-.PHONY: all create-release
+.PHONY: all build
 
 all:
 
-create-release:
+build:
 	zip -FS -r tcott.zip * -x README.md -x LICENSE -x Makefile
