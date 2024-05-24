@@ -31,7 +31,7 @@
     }
 
     function toSearchUrl(query) {
-        return "https://twitter.com/search?f=live&q="+encodeURIComponent(query);
+        return "https://x.com/search?f=live&q="+encodeURIComponent(query);
     }
 
     function toTwitterDatetime(d) {
