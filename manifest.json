@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name":        "the-context-of-the-tweet",
   "short_name":  "tcott",
-  "version":     "0.3",
+  "version":     "1.0",
   "description": "Investigate the context of the tweet",
   "icons": {
     "48": "icons/icon48.png",
@@ -10,22 +10,31 @@
   },
 
   "permissions": [
-    "*://twitter.com/*/status/*",
     "activeTab",
+    "scripting",
     "tabs"
+  ],
+  "host_permissions": [
+    "*://x.com/*/status/*"
   ],
 
   "background": {
     "scripts": ["background.js"]
   },
 
-  "page_action": {
+  "action": {
     "browser_style": true,
     "default_title": "Investigate the context of the tweet",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
+    }
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{591d13a3-9a42-41cb-887b-55173cbe1177}"
     }
   }
 }

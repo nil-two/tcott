@@ -4,9 +4,13 @@
     }
 
     function search(tab, timeDiff) {
-        browser.tabs.executeScript(tab.id, {file: "/content_script.js"}, function() {
-            browser.tabs.sendMessage(tab.id, {timeDiff: timeDiff});
-        });
+        (async () => {
+            await browser.scripting.executeScript({
+                target: {tabId: tab.id},
+                files: ["/content_script.js"],
+            });
+            await browser.tabs.sendMessage(tab.id, {timeDiff: timeDiff});
+        })();
     }
 
     function searchOnActiveTab(timeDiff) {
